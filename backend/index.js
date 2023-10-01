@@ -4,10 +4,11 @@ const dotenv = require('dotenv');
 const path = require("path");
 const app = express();
 const mongoose = require('mongoose');
-app.use(cors())
 app.use(express.json());
 const Router = require('./Routes/router.js');
-app.use(express.static("./public"))
+// app.use(express.static("./public"))
+app.use(cors())
+
 
 mongoose.connect("mongodb+srv://tabindanoor:tabindamuslim@image.1stvd6n.mongodb.net/image?retryWrites=true&w=majority", {useUnifiedTopology:true, useNewUrlParser:true})
 .then(()=>{
