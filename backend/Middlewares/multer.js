@@ -2,7 +2,7 @@ const multer = require('multer');
 
 
 const myMulter = multer.diskStorage({
-    destination:function(req, file, cb ){
+    destination:function (req, file, cb ){
         cb(null,'./public/uploads')
     },
     filename : function( req ,file, cb){
@@ -10,7 +10,7 @@ const myMulter = multer.diskStorage({
         }
 })
 
-const defineTypes = (cb, file) => {
+const defineTypes = (req,cb, file) => {
     const allowedData = ["image/png", "image/jpg", "image/jpeg", "application/pdf"]; // Updated allowed MIME types
     
     if (!allowedData.includes(file.mimetype)) {
