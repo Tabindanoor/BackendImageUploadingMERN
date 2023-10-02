@@ -36,12 +36,16 @@ Router.get("/", async (req, res) => {
 
         console.log(myData)
         // Send the data as the response
-        res.status(200).json(myData);
+        res.send(JSON.stringify(myData));
+        // res.status(200).json(myData);
     } catch (error) {
         console.error("Error in GET route:", error);
         res.status(500).json({ error: "Internal Server Error" });
     }
 });
+
+
+
 
 
 
