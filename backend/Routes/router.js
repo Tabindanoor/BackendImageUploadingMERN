@@ -4,10 +4,10 @@ const MulterData = require("../Middlewares/multer.js");
 const MyModel = require("../mongoModel/model.js")
 
 Router.post("/",MulterData.single("photo"),async(req,res)=>{
-//    console.log(req);
-   console.log(req.file.fieldname, "file"); // Log the file received
+   console.log(req.body);
+   console.log(req.file.originalname, "file"); // Log the file received
 // console.log(req.body,"body"); 
-   const photo = req.file.filename;
+   const photo = req.file.originalname;
    await MyModel.create({ photo})
    .then((data)=>{
     
@@ -26,13 +26,15 @@ Router.post("/",MulterData.single("photo"),async(req,res)=>{
 
 Router.get("/", async (req, res) => {
     try {
+        console.log(res, "this is response")
         const myData = await MyModel.find({}).sort({ createdAt: "descending" });
         // const myData = await MyModel.find({})
         // Check if any data was found
-        if (myData.length === 0) {
-            return res.status(404).json({ message: "No data found" });
-        }
+        // if (myData.length === 0) {
+        //     return res.status(404).json({ message: "No data found" });
+        // }
 
+        console.log(myData)
         // Send the data as the response
         res.status(200).json(myData);
     } catch (error) {

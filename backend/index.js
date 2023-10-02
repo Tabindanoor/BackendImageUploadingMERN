@@ -8,6 +8,7 @@ const { config } = require('dotenv');
 const dotenv = require('dotenv');
 const Router = require("./Routes/router.js")
 app.use(express.static("public"))
+app.use(express.static("uploads"))
 
 mongoose.connect("mongodb+srv://tabindanoor:tabindamuslim@image.1stvd6n.mongodb.net/?retryWrites=true&w=majority",{useUnifiedTopology:true,})
 .then(()=>{
