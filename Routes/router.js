@@ -23,6 +23,7 @@ Router.post("/",MulterData.single("photo"),async(req,res)=>{
 });
 })
 
+
 Router.get("/", async (req, res) => {
     try {
         console.log(res, "this is response")
