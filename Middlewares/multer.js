@@ -15,7 +15,7 @@ const defineTypes = (req,file, cb) => {
     
     if (!allowedData.includes(file.mimetype)) {
         // Assuming you have access to the `res` object in the current scope
-        return res.status(401).json("Only images and PDFs are allowed"); // Updated error message
+        return res.status(401).json("Only images are allowed"); // Updated error message
     } else {
         return cb(null, "ok");
     }
