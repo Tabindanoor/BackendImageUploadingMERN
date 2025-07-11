@@ -5,9 +5,9 @@ const MyModel = require("../mongoModel/model.js")
 
 Router.post("/",MulterData.single("photo"),async(req,res)=>{
    console.log(req.body);
-   console.log(req.file.originalname, "file"); // Log the file received
+   console.log(req.file.filename, "file"); // Log the file received
 // console.log(req.body,"body"); 
-   const photo = req.file.originalname;
+   const photo = req.file.filename;
    await MyModel.create({ photo})
    .then((data)=>{
     
@@ -15,11 +15,12 @@ Router.post("/",MulterData.single("photo"),async(req,res)=>{
     // res.send(data);
     res.send(JSON.stringify(data));
    })
-   .catch()
-   {
-    console.log("error occues in the posting images")
-    res.send("error occues in the posting images")
-   }
+   .catch((err) => {
+  console.log("error occurs in posting images", err);
+  res.status(500).send("Error occurred while posting image");
+});
+
+   
 
 //    res.send("how are you post route")
 })

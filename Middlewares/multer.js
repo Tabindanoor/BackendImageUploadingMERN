@@ -1,6 +1,5 @@
 const multer = require('multer');
 
-
 const myMulter = multer.diskStorage({
     destination:function (req, file, cb ){
         cb(null,'./public/uploads')
@@ -10,8 +9,9 @@ const myMulter = multer.diskStorage({
         }
 })
 
-const defineTypes = (req,cb, file) => {
-    const allowedData = ["image/png", "image/jpg", "image/jpeg", "application/pdf"]; // Updated allowed MIME types
+const defineTypes = (req,file, cb) => {
+    const allowedData = ["image/png", "image/jpg", "image/jpeg"]; // Updated allowed MIME types
+    // const allowedData = ["image/png", "image/jpg", "image/jpeg", "application/pdf"]; // Updated allowed MIME types
     
     if (!allowedData.includes(file.mimetype)) {
         // Assuming you have access to the `res` object in the current scope
@@ -21,5 +21,8 @@ const defineTypes = (req,cb, file) => {
     }
 };
 
-const MulterData = multer({myMulter,defineTypes});
+const MulterData = multer({
+    storage:myMulter,
+    fileFilter:defineTypes
+});
 module.exports = MulterData;
